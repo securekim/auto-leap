@@ -1,4 +1,11 @@
 
+// CHANGE THIS /////////////////////////////////////////////////
+
+let A_METAMASK = "0x9C73363B89C0Eda0dbA1B4a5250E891F60723378";
+
+////////////////////////////////////////////////////////////////
+
+
 var Web3 = require("web3");
 const fs = require('fs');
 const request = require("request");
@@ -8,18 +15,6 @@ const C_MINT = "0x40c10f19000000000000000000000000"; //MINT 에 붙는 접두어
 const C_APPROVE = "0x095ea7b3000000000000000000000000"; //APPROVE 에 붙는 접두어
 const C_ZERO = "000000000000000000000000000000000000000000000000000000000000000"; // 사이에 들어가는 0들
 
-// data: "0x40c10f190000000000000000000000006eab846eab32e9b64d75324198b64641d0091e930000000000000000000000000000000000000000000000000000000000000002"
-// from: "0x6eab846eab32e9b64d75324198b64641d0091e93"
-// to: "0x8E3D413B1F6B52b1C5cBb29B8018b438eaaeaD40"
-// value: "0x0"
-
-// data: "0x40c10f190000000000000000000000006eab846eab32e9b64d75324198b64641d0091e930000000000000000000000000000000000000000000000000000000000000002"
-// from: "0x6eab846eab32e9b64d75324198b64641d0091e93" //TRUFFLE
-// gas: "0x267ee"
-// to: "0x8E3D413B1F6B52b1C5cBb29B8018b438eaaeaD40" //TOKEN
-// value: "0x0"
-
-let A_METAMASK = "0x9C73363B89C0Eda0dbA1B4a5250E891F60723378";
 let A_TRUFFLE = "";
 let A_TOKEN = "";
 let A_ExitHandler = "";
@@ -59,7 +54,7 @@ web3.eth.getAccounts((error, result) => {
     var idx = auto_leap.indexOf('NaiveStorageToken');
     A_TOKEN = auto_leap.slice(idx+19,idx+61);
     
-    idx = auto_leap.indexOf('NaiveStorageToken');
+    idx = auto_leap.indexOf('ExitHandler');
     A_ExitHandler = auto_leap.slice(idx+19,idx+61);
 
     var result_hash = "";
@@ -103,7 +98,7 @@ web3.eth.getAccounts((error, result) => {
                     
                     // method: "eth_getTransactionByHash"
                     // params: ["0x6972cbbfbdbd75f0f126e1097213c392c859e1b68ac2a3daa57080807932ff42"]
-                    // 0: "0x6972cbbfbdbd75f0f126e1097213c392c859e1b68ac2a3daa57080807932ff42"
+                    // 0: "0x6972cbbfbdbd75f0f126e1097213c392c859e1b68ac2a3daa57080807932ff42" // 이거생략함
 
                     sendRPC("eth_getTransactionReceipt", result_hash, (body) =>{
                         //////////////////////////APPROVE ////////////////////////
